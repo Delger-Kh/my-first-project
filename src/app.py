@@ -9,9 +9,10 @@ DISEASES = {
 }
 
 
-
+feature/welcome
 def greeting(name="Хэрэглэгч"):
-    return f"Сайн байна уу, {name}! {APP_NAME}-д тавтай морил."
+    return f"Тавтай морил, {name}! Энэ бол {APP_NAME}."
+main
 
 
 def main():
