@@ -10,7 +10,7 @@ DISEASES = {
 
 
 def greeting():
-    return "Сайн байна уу!"
+    return "Тавтай морил!"
 
 
 def main():
