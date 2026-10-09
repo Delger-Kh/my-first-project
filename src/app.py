@@ -9,12 +9,14 @@ DISEASES = {
 }
 
 
-def greeting():
-    return "Тавтай морил!"
+feature/welcome
+def greeting(name="Хэрэглэгч"):
+    return f"Тавтай морил, {name}! Энэ бол {APP_NAME}."
+main
 
 
 def main():
-    print(greeting())
+    print(greeting("Дэлгэр"))
     print(f"{APP_NAME} — таних боломжтой өвчнүүд:")
     for name in DISEASES.values():
         print(f"- {name}")
