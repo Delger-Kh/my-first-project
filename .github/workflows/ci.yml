@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Кодоо татах
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Python орчин тохируулах
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 3. Хамаарал суулгах
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4. Тест ажиллуулах
+      - name: Run tests
+        run: pytest -v

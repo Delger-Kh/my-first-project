@@ -9,10 +9,8 @@ DISEASES = {
 }
 
 
-feature/welcome
 def greeting(name="Хэрэглэгч"):
     return f"Тавтай морил, {name}! Энэ бол {APP_NAME}."
-main
 
 
 def main():
