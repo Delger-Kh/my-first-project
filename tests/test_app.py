@@ -10,7 +10,7 @@ def test_greeting_custom_name():
 
 
 def test_diseases_count():
-    assert len(DISEASES) == 3
+    assert len(DISEASES) == 4
 
 
 def test_diseases_contains_rust():
