@@ -28,7 +28,7 @@ def test_severity_severe_when_most_leaves_infected():
     level = severity_level(infected, total)
 
     # Assert
-    assert level == "Хүнд"
+    assert level == "Дунд"
 
 
 # ---------- 3-4. Хилийн тохиолдол (edge case) ----------
