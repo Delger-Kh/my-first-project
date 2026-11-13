@@ -1,0 +1,17 @@
+# Лаб 9 — plant-api Deployment-ийн 3 Pod-ийг нэг хаягаар гадагш нээнэ.
+# minikube service plant-api-service  → браузерт апп нээгдэнэ
+apiVersion: v1
+kind: Service
+metadata:
+  name: plant-api-service
+  labels:
+    app: plant-api
+spec:
+  type: NodePort          # cluster-ийн гаднаас (компьютер, Flutter апп) хандах боломжтой
+  selector:
+    app: plant-api        # app=plant-api label-тэй бүх Pod руу хүсэлтийг хуваарилна
+  ports:
+    - name: http
+      port: 3000          # cluster доторх Service-ийн порт
+      targetPort: 3000    # Pod доторх container-ийн порт (uvicorn)
+      nodePort: 30080     # гаднаас хандах порт (30000–32767)

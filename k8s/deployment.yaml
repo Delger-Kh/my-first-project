@@ -1,0 +1,44 @@
+# Лаб 9 — Ургамлын өвчин илрүүлэх системийн backend API-г Kubernetes дээр 3 хувь (replica) ажиллуулна.
+# Image: Лаб 8-д бүтээсэн plant-api:1.0  (minikube image load plant-api:1.0 хийж cluster руу хуулна)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plant-api
+  labels:
+    app: plant-api
+spec:
+  replicas: 3                      # яг 3 Pod ажиллана; нэг нь устахад Kubernetes шинээр үүсгэнэ
+  selector:
+    matchLabels:
+      app: plant-api               # энэ label-тэй Pod-уудыг энэ Deployment удирдана
+  template:
+    metadata:
+      labels:
+        app: plant-api
+    spec:
+      containers:
+        - name: plant-api
+          image: plant-api:1.0
+          imagePullPolicy: IfNotPresent   # Docker Hub-аас татахгүй, cluster доторх локал image-ийг ашиглана
+          ports:
+            - containerPort: 3000
+          # DATABASE_URL өгөөгүй тул Pod бүр өөрийн SQLite файлыг ашиглана (лабын хувьд хангалттай)
+          readinessProbe:                 # бэлэн болсон Pod руу л Service хүсэлт илгээнэ
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:                  # гацсан Pod-ийг Kubernetes дахин эхлүүлнэ
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
