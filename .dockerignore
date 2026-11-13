@@ -1,0 +1,14 @@
+.git
+.github
+.gitignore
+.idea
+.vscode
+__pycache__
+*.pyc
+.pytest_cache
+*.docx
+*.db
+mobile
+Dockerfile
+docker-compose.yml
+.dockerignore

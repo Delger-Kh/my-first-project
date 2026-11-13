@@ -1,0 +1,34 @@
+# Лаб 8 — алхам 7: API + өгөгдлийн санг хамт ажиллуулах
+#   docker compose up -d --build
+#   docker compose down        (өгөгдөл pgdata volume-д хадгалагдана)
+services:
+  db:
+    image: postgres:16
+    container_name: plant-db
+    environment:
+      POSTGRES_USER: plant
+      POSTGRES_PASSWORD: plant123   # зөвхөн хичээлийн/локал орчинд
+      POSTGRES_DB: plantdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plant -d plantdb -h localhost"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    image: plant-api:1.0
+    container_name: plant-api
+    environment:
+      DATABASE_URL: postgresql+psycopg://plant:plant123@db:5432/plantdb
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy   # DB бэлэн болсны дараа API асна
+    restart: unless-stopped
+
+volumes:
+  pgdata:
