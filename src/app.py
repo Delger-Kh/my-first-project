@@ -10,10 +10,12 @@ DISEASES = {
 
 
 def greeting(name="Хэрэглэгч"):
+    """Хэрэглэгчийг нэрээр нь мэндчилсэн мессеж буцаана."""
     return f"Тавтай морил, {name}! Энэ бол {APP_NAME}."
 
 
 def main():
+    """Мэндчилгээ ба таних боломжтой өвчний жагсаалтыг хэвлэнэ."""
     print(greeting("Дэлгэр"))
     print(f"{APP_NAME} — таних боломжтой өвчнүүд:")
     for name in DISEASES.values():

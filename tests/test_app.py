@@ -1,3 +1,5 @@
+"""app.py модулийн unit тестүүд (Лаб 6-7)."""
+
 from app import APP_NAME, DISEASES, greeting, main
 
 

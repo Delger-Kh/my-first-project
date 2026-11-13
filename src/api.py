@@ -23,6 +23,7 @@ MIN_IMAGE_BYTES = 1024  # хэт жижиг файл = тодорхойгүй з
 
 @asynccontextmanager
 async def lifespan(_app):
+    """Сервер асахад өгөгдлийн санг бэлдэнэ."""
     init_db()
     print(f"{APP_NAME} API ажиллаж байна · өгөгдлийн сан: {db_kind()}", flush=True)
     yield
@@ -51,6 +52,7 @@ def predict(image_bytes: bytes):
 
 @app.get("/health")
 def health():
+    """Сервер ба өгөгдлийн сан ажиллаж байгааг шалгана."""
     with SessionLocal() as session:
         session.execute(text("SELECT 1"))
     return {"status": "ok", "version": VERSION, "database": db_kind()}
@@ -58,6 +60,7 @@ def health():
 
 @app.get("/api/diseases")
 def list_diseases():
+    """Мэдлэгийн сан дахь бүх өвчнийг эмчилгээний хамт буцаана."""
     with SessionLocal() as session:
         rows = session.scalars(select(Disease).order_by(Disease.code)).all()
         return [{"code": d.code, "name": d.name, "treatment": d.treatment} for d in rows]
@@ -65,10 +68,12 @@ def list_diseases():
 
 @app.post("/api/diagnoses", status_code=201)
 async def create_diagnosis(plant_name: str = Form(...), image: UploadFile = File(...)):
+    """Навчны зургийг хүлээн авч онош гаргаад, өгөгдлийн санд хадгална."""
     data = await image.read()
-    # Flutter-ийн http сан content-type-г ихэвчлэн octet-stream гэж илгээдэг тул өргөтгөлийг ч шалгана
-    is_image = (image.content_type or "").startswith("image/") or (image.filename or "").lower().endswith(
-        (".jpg", ".jpeg", ".png", ".webp")
+    # Flutter-ийн http сан content-type-г ихэвчлэн octet-stream гэж илгээдэг тул
+    # файлын өргөтгөлийг ч шалгана
+    is_image = (image.content_type or "").startswith("image/") or (
+        (image.filename or "").lower().endswith((".jpg", ".jpeg", ".png", ".webp"))
     )
     if not is_image or len(data) < MIN_IMAGE_BYTES:
         raise HTTPException(status_code=422, detail="Зураг тодорхойгүй байна. Дахин зураг авна уу.")
@@ -100,6 +105,7 @@ async def create_diagnosis(plant_name: str = Form(...), image: UploadFile = File
 
 @app.get("/api/diagnoses")
 def list_diagnoses():
+    """Оношийн түүхийг шинээс нь эхлэн буцаана."""
     with SessionLocal() as session:
         rows = session.scalars(select(Diagnosis).order_by(Diagnosis.id.desc())).all()
         return [

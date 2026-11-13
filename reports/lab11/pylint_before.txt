@@ -1,0 +1,40 @@
+************* Module diagnosis
+src/diagnosis.py:35:0: C0304: Final newline missing (missing-final-newline)
+************* Module api
+src/api.py:69:0: C0301: Line too long (102/100) (line-too-long)
+src/api.py:70:0: C0301: Line too long (106/100) (line-too-long)
+src/api.py:25:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/api.py:53:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/api.py:60:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/api.py:67:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/api.py:102:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module app
+src/app.py:24:0: C0304: Final newline missing (missing-final-newline)
+src/app.py:12:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/app.py:16:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module db
+src/db.py:49:0: C0301: Line too long (114/100) (line-too-long)
+src/db.py:50:0: C0301: Line too long (101/100) (line-too-long)
+src/db.py:22:0: C0115: Missing class docstring (missing-class-docstring)
+src/db.py:26:0: C0115: Missing class docstring (missing-class-docstring)
+src/db.py:34:0: C0115: Missing class docstring (missing-class-docstring)
+src/db.py:65:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module test_diagnosis
+tests/test_diagnosis.py:67:0: C0304: Final newline missing (missing-final-newline)
+************* Module test_app
+tests/test_app.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module test_api
+tests/test_api.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+tests/test_api.py:9:0: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_api.py:14:0: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_api.py:18:16: W0621: Redefining name 'client' from outer scope (line 9) (redefined-outer-name)
+tests/test_api.py:23:34: W0621: Redefining name 'client' from outer scope (line 9) (redefined-outer-name)
+tests/test_api.py:28:26: W0621: Redefining name 'client' from outer scope (line 9) (redefined-outer-name)
+tests/test_api.py:40:31: W0621: Redefining name 'client' from outer scope (line 9) (redefined-outer-name)
+tests/test_api.py:49:33: W0621: Redefining name 'client' from outer scope (line 9) (redefined-outer-name)
+************* Module conftest
+tests/conftest.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+
+------------------------------------------------------------------
+Your code has been rated at 8.45/10
+

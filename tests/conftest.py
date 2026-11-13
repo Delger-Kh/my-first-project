@@ -1,3 +1,5 @@
+"""Pytest-ийн нийтлэг тохиргоо: тестэд түр SQLite өгөгдлийн сан ашиглана."""
+
 import os
 import tempfile
 

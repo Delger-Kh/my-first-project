@@ -1,3 +1,5 @@
+"""REST API-ийн integration тестүүд (Лаб 8)."""
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -5,13 +7,15 @@ from api import app
 from app import DISEASES
 
 
-@pytest.fixture(scope="module")
-def client():
+@pytest.fixture(name="client", scope="module")
+def fixture_client():
+    """Апп-ыг асааж (lifespan → init_db), тестийн HTTP клиент өгнө."""
     with TestClient(app) as c:  # lifespan → init_db() ажиллана
         yield c
 
 
 def fake_image(seed=b"leaf"):
+    """1KB-аас том хуурамч зургийн байт үүсгэнэ."""
     return seed * 400  # 1KB-аас их
 
 

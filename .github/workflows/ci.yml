@@ -21,9 +21,17 @@ jobs:
         with:
           python-version: "3.12"
 
-      # 3. Хамаарал суулгах
+      # 3. Хамаарал суулгах (+ Лаб 11: шинжилгээний хэрэгслүүд)
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt pylint pip-audit
+
+      # Лаб 11: Статик шинжилгээ — кодын стилийн алдаа гарвал CI унана
+      - name: Lint (pylint)
+        run: pylint src tests
+
+      # Лаб 11: Dependency scan — мэдэгдэж буй эмзэг байдалтай сан байвал CI унана
+      - name: Dependency scan (pip-audit)
+        run: pip-audit -r requirements.txt
 
       # 4. Тест ажиллуулах
       - name: Run tests

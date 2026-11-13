@@ -1,0 +1,14 @@
+# Жишээ: хуучин python-multipart==0.0.6 хувилбарыг шалгасан үр дүн
+$ pip-audit -r old-requirements.txt
+Found 16 known vulnerabilities in 1 package
+Name             Version ID              Fix Versions
+---------------- ------- --------------- ------------
+python-multipart 0.0.6   PYSEC-2024-38   0.0.7
+python-multipart 0.0.6   PYSEC-2026-1851 0.0.18
+python-multipart 0.0.6   PYSEC-2026-1852 0.0.22
+python-multipart 0.0.6   PYSEC-2026-3038 0.0.26
+python-multipart 0.0.6   PYSEC-2026-3039 0.0.27
+python-multipart 0.0.6   PYSEC-2026-3040 0.0.31
+python-multipart 0.0.6   PYSEC-2026-3036 0.0.30
+python-multipart 0.0.6   PYSEC-2026-3037 0.0.30
+python-multipart 0.0.6   PYSEC-2026-1850 0.0.7

@@ -20,10 +20,12 @@ SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
 
 
 class Base(DeclarativeBase):
-    pass
+    """Бүх хүснэгтийн суурь класс."""
 
 
 class Disease(Base):
+    """Өвчний мэдлэгийн сан: код, нэр, эмчилгээ."""
+
     __tablename__ = "diseases"
 
     code: Mapped[str] = mapped_column(String(50), primary_key=True)
@@ -32,6 +34,8 @@ class Disease(Base):
 
 
 class Diagnosis(Base):
+    """Хэрэглэгчийн илгээсэн зураг бүрийн оношийн бичлэг."""
+
     __tablename__ = "diagnoses"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -46,8 +50,13 @@ class Diagnosis(Base):
 
 
 TREATMENTS = {
-    "powdery_mildew": "Өвчилсөн навчийг тайрч устгах, хүхэр агуулсан фунгицид шүрших, агааржуулалтыг сайжруулах.",
-    "leaf_spot": "Навчийг нойтон байлгахгүйн тулд ёроолоор нь услах, зэс агуулсан бэлдмэл хэрэглэх.",
+    "powdery_mildew": (
+        "Өвчилсөн навчийг тайрч устгах, хүхэр агуулсан фунгицид шүрших, "
+        "агааржуулалтыг сайжруулах."
+    ),
+    "leaf_spot": (
+        "Навчийг нойтон байлгахгүйн тулд ёроолоор нь услах, зэс агуулсан бэлдмэл хэрэглэх."
+    ),
     "rust": "Халдвартай навчийг түүж устгах, триазол бүлгийн фунгицид хэрэглэх.",
 }
 
@@ -63,4 +72,5 @@ def init_db():
 
 
 def db_kind():
+    """Холбогдсон өгөгдлийн сангийн төрлийг буцаана."""
     return engine.dialect.name  # "postgresql" эсвэл "sqlite"

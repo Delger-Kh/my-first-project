@@ -2,6 +2,6 @@ fastapi==0.162.*
 uvicorn==0.54.*
 sqlalchemy==2.1.*
 psycopg[binary]==3.3.*
-python-multipart
+python-multipart>=0.0.31  # Лаб 11: pip-audit — 0.0.31-ээс доош 5 High эмзэг байдалтай
 httpx
 pytest

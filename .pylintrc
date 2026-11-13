@@ -1,0 +1,21 @@
+# Лаб 11: Pylint тохиргоо — төслийн суурь дүрмийн багц
+[MAIN]
+# src/ дотрох модулиудыг (app, db, api, diagnosis) импортлох боломжтой болгоно
+init-hook="import sys; sys.path.insert(0, 'src')"
+ignore=.git,__pycache__,.pytest_cache,mobile
+
+[FORMAT]
+max-line-length=100
+
+[BASIC]
+# test_ функцүүдийн нэр өөрөө тайлбар болдог тул docstring шаардахгүй
+no-docstring-rgx=^_|^test_
+# SQLAlchemy-ийн уламжлалт нэр
+good-names=i,j,k,_,c,d,r,SessionLocal
+
+[DESIGN]
+# SQLAlchemy model класс public method-гүй байх нь хэвийн
+min-public-methods=0
+
+[MESSAGES CONTROL]
+disable=
